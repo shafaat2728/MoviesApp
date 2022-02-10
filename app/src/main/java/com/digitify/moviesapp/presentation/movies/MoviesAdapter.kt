@@ -12,6 +12,9 @@ import javax.inject.Inject
 class MoviesAdapter @Inject constructor() :
     ListAdapter<Movies, MoviesAdapter.ViewHolder>(DiffCallback) {
 
+    var listener: ((item: Movies, position: Int) -> Unit)? = null
+
+
     class ViewHolder(private var binding: ItemMoviesBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -29,12 +32,11 @@ class MoviesAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val team = getItem(position)
-        holder.bind(team)
-        /*holder.itemView.setOnClickListener {
-            onClickListener.onClick(team)
+        val item = getItem(position)
+        holder.bind(item)
+        holder.itemView.setOnClickListener {
+            listener?.invoke(item,position)
         }
-*/
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Movies>() {
