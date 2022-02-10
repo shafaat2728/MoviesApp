@@ -10,7 +10,6 @@ interface ApiService {
 
     @GET("movie/popular")
     suspend fun getMovies(
-        @Query("api_key") apiKey: String
     ): Response<MoviesModel>
 
 }

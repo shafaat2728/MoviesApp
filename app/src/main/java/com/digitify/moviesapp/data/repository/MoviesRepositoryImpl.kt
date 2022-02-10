@@ -11,6 +11,6 @@ class MoviesRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : MoviesRepository {
     override suspend fun getMovies(): Response<MoviesModel> {
-        return apiService.getMovies(BuildConfig.APIKEY)
+        return apiService.getMovies()
     }
 }

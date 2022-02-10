@@ -2,12 +2,12 @@ package com.digitify.moviesapp.data.dto
 
 data class MoviesModel(
     var page: Int,
-    var results: List<Result>?= emptyList(),
+    var results: List<Movies>?= emptyList(),
     var total_pages: Int,
     var total_results: Int
 )
 
-data class Result(
+data class Movies(
     var adult: Boolean,
     var backdrop_path: String,
     var genre_ids: List<Int>?= emptyList(),
