@@ -5,7 +5,7 @@ import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun String.checkCurrentYear(): Boolean {
+fun String?.checkCurrentYear(): Boolean {
     return try {
         val year = Calendar.getInstance().get(Calendar.YEAR)
         val dateFormat = SimpleDateFormat("yyyy-MM-dd")

@@ -1,25 +1,26 @@
 package com.digitify.moviesapp.data.dto
 
 data class MoviesModel(
-    var page: Int,
-    var results: List<Movies>?= emptyList(),
-    var total_pages: Int,
-    var total_results: Int
+    var results: List<Movies>?= emptyList()
 )
 
 data class Movies(
-    var adult: Boolean,
-    var backdrop_path: String,
-    var genre_ids: List<Int>?= emptyList(),
     var id: Int,
-    var original_language: String,
-    var original_title: String,
-    var overview: String,
-    var popularity: Double,
-    var poster_path: String,
-    var release_date: String,
-    var title: String,
-    var video: Boolean,
-    var vote_average: Double,
-    var vote_count: Int
+    var poster_path: String?="",
+    var release_date: String?="",
+    var title: String?=""
+)
+
+data class MovieDetail(
+    var backdrop_path: String?="",
+    var id: Int,
+    var overview: String?="",
+    var popularity: Double?=0.0,
+    var poster_path: String?="",
+    var release_date: String?="",
+    var revenue: Int?=0,
+    var runtime: Int?=0,
+    var title: String?="",
+    var vote_average: Double?=0.0,
+    var vote_count: Int?=0
 )
