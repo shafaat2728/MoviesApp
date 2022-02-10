@@ -13,6 +13,19 @@
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/tvTitle"
+            android:elevation="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/ivProduct"
+            android:layout_marginStart="@dimen/_15sdp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_10sdp" >
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/black" />
+        </Constraint>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -28,10 +41,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintTop_toTopOf="@id/btnBack"
             motion:layout_constraintStart_toEndOf="@id/btnBack"
-            motion:layout_constraintBottom_toBottomOf="@id/btnBack" ></Constraint>
+            motion:layout_constraintBottom_toBottomOf="@id/btnBack"
+            android:elevation="@dimen/_10sdp">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/white" />
+        </Constraint>
         <Constraint
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"

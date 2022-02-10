@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <import
             alias="ExtensionFunctions"
             type="com.digitify.moviesapp.common.UtillKt" />
@@ -44,7 +44,7 @@
             android:id="@+id/ivProduct"
             imageUrl="@{viewModel.movieDetailData.backdrop_path}"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_280sdp"
+            android:layout_height="@dimen/_230sdp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/bg_placeholder"
@@ -58,12 +58,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:elevation="@dimen/_10sdp"
             android:text="@{viewModel.movieDetailData.title}"
             android:textColor="@color/black"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivProduct" />
+            app:layout_constraintTop_toBottomOf="@id/ivProduct"
+            tools:text="sqbhjsbhjbxsx" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -113,6 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="@{ExtensionFunctions.checkVisibility(viewModel.movieDetailData.revenue) ?  View.VISIBLE : View.GONE}"
                 android:orientation="horizontal">
 
                 <TextView
@@ -128,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="@{String.valueOf(viewModel.movieDetailData.revenue)}"
+                    android:text="@{ExtensionFunctions.getRevenue(viewModel.movieDetailData.revenue)}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
             </LinearLayout>
@@ -205,7 +208,10 @@
                     <ProgressBar
                         android:layout_width="@dimen/_60sdp"
                         android:layout_height="@dimen/_60sdp"
-                        android:backgroundTint="@color/black" />
+                        android:backgroundTint="@color/black"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:progressDrawable="@drawable/custom_progress"
+                        android:progress="@{ExtensionFunctions.getAverageRating(viewModel.movieDetailData.vote_average)}" />
 
                     <TextView
                         android:layout_width="wrap_content"

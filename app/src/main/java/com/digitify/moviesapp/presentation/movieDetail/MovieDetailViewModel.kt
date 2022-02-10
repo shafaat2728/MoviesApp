@@ -23,7 +23,7 @@ class MovieDetailViewModel @Inject constructor(
     val isLoading = ObservableBoolean()
     val isError = MutableLiveData<String>()
 
-    private fun getMovieDetail(movieId: String) {
+     fun getMovieDetail(movieId: String) {
         movieDetailUseCase(movieId).onEach { result ->
             when (result) {
                 is State.Success -> {

@@ -11,8 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.digitify.moviesapp.R
+import com.digitify.moviesapp.common.safeNavigate
 import com.digitify.moviesapp.common.showToast
 import com.digitify.moviesapp.databinding.FragmentMoviesBinding
+import com.digitify.moviesapp.presentation.movieDetail.MovieDetailFragmentArgs
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -34,6 +36,7 @@ class MoviesFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+
         setRecyclerView()
         setObservers()
         return binding.root
@@ -51,8 +54,18 @@ class MoviesFragment : Fragment() {
 
         binding.rvMovies.layoutManager = GridLayoutManager(requireContext(), spanCount)
         binding.rvMovies.adapter = adapter
-        adapter.listener = { movies, position ->
+        adapter.listener = { movies, _ ->
+            navigateToMovieDetailFragment(movies.id.toString())
         }
+    }
+
+    private fun navigateToMovieDetailFragment(movieId: String) {
+        safeNavigate(
+            MoviesFragmentDirections
+                .actionMoviesFragmentToMovieDetailFragment(
+                    movieId
+                )
+        )
     }
 
 
