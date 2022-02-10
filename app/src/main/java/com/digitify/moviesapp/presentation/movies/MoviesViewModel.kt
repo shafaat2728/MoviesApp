@@ -21,6 +21,7 @@ class MoviesViewModel @Inject constructor(
     val moviesList = MutableLiveData<List<Movies>>()
     private val copyMoviesList = MutableLiveData<List<Movies>>()
     val isLoading = ObservableBoolean()
+    val isError = MutableLiveData<String>()
 
     init {
         getMovies()
@@ -36,6 +37,7 @@ class MoviesViewModel @Inject constructor(
                 }
                 is State.Error -> {
                     isLoading.set(false)
+                    isError.value = result.serverError ?: "An unexpected error occurred"
                 }
                 is State.Loading -> {
                     isLoading.set(true)

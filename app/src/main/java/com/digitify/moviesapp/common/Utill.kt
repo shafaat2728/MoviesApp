@@ -1,5 +1,7 @@
 package com.digitify.moviesapp.common
 
+import android.content.Context
+import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,4 +19,8 @@ fun String.checkCurrentYear(): Boolean {
 
         false
     }
+}
+
+fun Context.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

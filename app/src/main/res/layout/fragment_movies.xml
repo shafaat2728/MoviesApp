@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.digitify.moviesapp.presentation.movies.MoviesViewModel" />
@@ -33,7 +33,8 @@
             android:padding="@dimen/_15sdp"
             android:singleLine="true"
             android:textSize="@dimen/_13ssp" />
-
+        <include layout="@layout/item_shimmer_movies"
+            android:visibility="@{viewModel.isLoading() ?  View.VISIBLE : View.GONE}"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMovies"
             moviesList="@{viewModel.moviesList}"
@@ -43,7 +44,6 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
             tools:listitem="@layout/item_movies" />
 
     </LinearLayout>
