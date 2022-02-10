@@ -36,7 +36,7 @@ class MoviesFragment : Fragment() {
     private fun setRecyclerView() {
         binding.rvMovies.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvMovies.adapter = adapter
-        adapter.listener = {  movies, position ->
+        adapter.listener = { movies, position ->
         }
     }
 
