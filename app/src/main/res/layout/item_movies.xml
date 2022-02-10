@@ -28,12 +28,13 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ivMovie"
+                    imageUrl="@{model.poster_path}"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_100sdp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    imageUrl="@{model.poster_path}"
-                    android:src="@drawable/bg_placeholder" />
+                    android:src="@drawable/bg_placeholder"
+                    app:shapeAppearanceOverlay="@style/roundedCorners" />
 
                 <TextView
                     android:id="@+id/tvMovieName"
@@ -59,6 +60,7 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
+                    android:text="@{model.release_date}"
                     android:textAlignment="viewStart"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp" />

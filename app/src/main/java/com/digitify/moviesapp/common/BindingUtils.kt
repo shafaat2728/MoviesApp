@@ -11,8 +11,11 @@ import androidx.core.net.toUri
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.digitify.moviesapp.R
+import com.digitify.moviesapp.data.dto.Movies
+import com.digitify.moviesapp.presentation.movies.MoviesAdapter
 import com.google.android.material.textfield.TextInputEditText
 
 object BindingUtils {
@@ -80,6 +83,7 @@ object BindingUtils {
     }
 
 
+    @JvmStatic
     @BindingAdapter("imageUrl")
     fun bindImage(imgView: ImageView, imgUrl: String?) {
         imgUrl?.let {
@@ -92,4 +96,10 @@ object BindingUtils {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("moviesList")
+    fun bindTeamsRV(recyclerView: RecyclerView, data: List<Movies>?){
+        val adapter = recyclerView.adapter as MoviesAdapter
+        adapter.submitList(data)
+    }
 }

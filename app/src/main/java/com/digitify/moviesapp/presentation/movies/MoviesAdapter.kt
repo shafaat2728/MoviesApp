@@ -1,10 +1,14 @@
 package com.digitify.moviesapp.presentation.movies
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.digitify.moviesapp.R
+import com.digitify.moviesapp.common.checkCurrentYear
 import com.digitify.moviesapp.data.dto.Movies
 import com.digitify.moviesapp.databinding.ItemMoviesBinding
 import javax.inject.Inject
@@ -21,6 +25,24 @@ class MoviesAdapter @Inject constructor() :
         fun bind(model: Movies) {
             binding.model = model
             binding.executePendingBindings()
+
+            if (model.release_date.checkCurrentYear()) {
+                binding.tvMovieYear.setTextColor(
+                    ContextCompat.getColor(
+                        binding.tvMovieYear.context,
+                        R.color.color_red
+                    )
+                )
+                binding.tvMovieYear.setTypeface(null, Typeface.BOLD);
+            } else {
+                binding.tvMovieYear.setTextColor(
+                    ContextCompat.getColor(
+                        binding.tvMovieYear.context,
+                        R.color.black
+                    )
+                )
+                binding.tvMovieYear.setTypeface(null, Typeface.NORMAL);
+            }
         }
     }
 
@@ -35,7 +57,7 @@ class MoviesAdapter @Inject constructor() :
         val item = getItem(position)
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            listener?.invoke(item,position)
+            listener?.invoke(item, position)
         }
     }
 

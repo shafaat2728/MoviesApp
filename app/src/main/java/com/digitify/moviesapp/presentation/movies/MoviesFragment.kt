@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.digitify.moviesapp.R
@@ -20,7 +21,7 @@ class MoviesFragment : Fragment() {
     @Inject
     lateinit var adapter: MoviesAdapter
     lateinit var binding: FragmentMoviesBinding
-
+    private val viewModel: MoviesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +30,8 @@ class MoviesFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_movies, container, false)
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
         setRecyclerView()
         return binding.root
     }
