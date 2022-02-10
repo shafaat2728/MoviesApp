@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.digitify.moviesapp.presentation.movies.MoviesViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".presentation.movies.MoviesFragment">
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/bg_et_field_selector"
+            android:onTextChanged="@{viewModel.onTextChanged}"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="@dimen/_10sdp"
+            android:hint="Search"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:padding="@dimen/_15sdp"
+            android:singleLine="true"
+            android:textSize="@dimen/_13ssp" />
+        <include layout="@layout/item_shimmer_movies"
+            android:visibility="@{viewModel.isLoading() ?  View.VISIBLE : View.GONE}"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMovies"
+            moviesList="@{viewModel.moviesList}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/item_movies" />
+
+    </LinearLayout>
+</layout>
