@@ -2,6 +2,7 @@ package com.digitify.moviesapp.common
 
 import android.content.Context
 import android.widget.Toast
+import com.digitify.moviesapp.data.dto.Genres
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,4 +24,19 @@ fun String?.checkCurrentYear(): Boolean {
 
 fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun List<Genres>.getGenres(): String {
+    var genres = ""
+    this.forEach {
+        genres = "${it.name} "
+    }
+    return genres
+}
+
+fun Int.getRunTime():String{
+    val hours: Int = this / 60
+    val minutes: Int = this % 60
+
+    return "${hours}h ${minutes}min"
 }

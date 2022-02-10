@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import
+            alias="ExtensionFunctions"
+            type="com.digitify.moviesapp.common.UtillKt" />
+
         <variable
-            name="genre"
-            type="String" />
+            name="viewModel"
+            type="com.digitify.moviesapp.presentation.movieDetail.MovieDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -37,6 +42,7 @@
 
         <ImageView
             android:id="@+id/ivProduct"
+            imageUrl="@{viewModel.movieDetailData.backdrop_path}"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_280sdp"
             android:adjustViewBounds="true"
@@ -52,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:text="THE EGEGEG"
+            android:text="@{viewModel.movieDetailData.title}"
             android:textColor="@color/black"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"
@@ -73,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="@{genre}"
+                android:text="@{ExtensionFunctions.getGenres(viewModel.movieDetailData.genres)}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp" />
 
@@ -97,7 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="Runtime: "
+                    android:text="@{ExtensionFunctions.getRunTime(viewModel.movieDetailData.runtime)}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
             </LinearLayout>
@@ -122,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="Runtime: "
+                    android:text="@{String.valueOf(viewModel.movieDetailData.revenue)}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
             </LinearLayout>
@@ -143,7 +149,7 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
-                android:text="dnmbwdmjbjdbwjkwjk"
+                android:text="@{viewModel.movieDetailData.overview}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp" />
         </LinearLayout>
@@ -176,7 +182,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:text="Votes"
+                        android:text="@{String.valueOf(viewModel.movieDetailData.vote_count)}"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_14ssp"
                         android:textStyle="bold" />
@@ -206,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:text="9.4"
+                        android:text="@{String.valueOf(viewModel.movieDetailData.vote_average)}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
                 </RelativeLayout>
