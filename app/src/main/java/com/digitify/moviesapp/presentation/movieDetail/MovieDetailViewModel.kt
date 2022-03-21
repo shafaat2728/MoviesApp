@@ -4,10 +4,9 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.digitify.moviesapp.common.State
-import com.digitify.moviesapp.data.dto.MovieDetail
-import com.digitify.moviesapp.data.dto.Movies
+import com.digitify.moviesapp.domain.models.MovieDetail
 import com.digitify.moviesapp.domain.use_cases.MovieDetailUseCase
+import com.digitify.moviesapp.domain.utils.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

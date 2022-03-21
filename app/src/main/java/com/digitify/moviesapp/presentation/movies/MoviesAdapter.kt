@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.digitify.moviesapp.R
 import com.digitify.moviesapp.common.checkCurrentYear
-import com.digitify.moviesapp.data.dto.Movies
 import com.digitify.moviesapp.databinding.ItemMoviesBinding
+import com.digitify.moviesapp.domain.models.Movies
 import javax.inject.Inject
 
 class MoviesAdapter @Inject constructor() :

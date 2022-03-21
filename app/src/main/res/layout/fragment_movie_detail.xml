@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="Plot"
+                android:text="@string/plot"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold" />

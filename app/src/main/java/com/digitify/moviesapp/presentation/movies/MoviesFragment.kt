@@ -46,6 +46,7 @@ class MoviesFragment : Fragment() {
         viewModel.isError.observe(viewLifecycleOwner) {
             requireContext().showToast(it)
         }
+
     }
 
     private fun setRecyclerView() {

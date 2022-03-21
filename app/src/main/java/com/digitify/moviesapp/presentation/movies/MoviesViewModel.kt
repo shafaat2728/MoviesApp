@@ -4,9 +4,9 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.digitify.moviesapp.common.State
-import com.digitify.moviesapp.data.dto.Movies
+import com.digitify.moviesapp.domain.models.Movies
 import com.digitify.moviesapp.domain.use_cases.MoviesUseCase
+import com.digitify.moviesapp.domain.utils.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -19,7 +19,7 @@ class MoviesViewModel @Inject constructor(
 
 
     val moviesList = MutableLiveData<List<Movies>>()
-    private val copyMoviesList = MutableLiveData<List<Movies>>()
+    private val searchMoviesList = MutableLiveData<List<Movies>>()
     val isLoading = ObservableBoolean()
     val isError = MutableLiveData<String>()
 
@@ -31,9 +31,14 @@ class MoviesViewModel @Inject constructor(
         moviesUseCase().onEach { result ->
             when (result) {
                 is State.Success -> {
-                    moviesList.value = result.wrapperData.results ?: emptyList()
-                    copyMoviesList.value = result.wrapperData.results ?: emptyList()
+                    moviesList.value = result.wrapperData.results?.sortedBy { it.id } ?: emptyList()
+                    searchMoviesList.value = result.wrapperData.results ?: emptyList()
                     isLoading.set(false)
+                }
+                is State.DBSuccess -> {
+                    moviesList.value = result.wrapperData.results?.sortedBy { it.id } ?: emptyList()
+                    searchMoviesList.value = result.wrapperData.results ?: emptyList()
+
                 }
                 is State.Error -> {
                     isLoading.set(false)
@@ -47,6 +52,11 @@ class MoviesViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+    fun onRefresh() {
+        isLoading.set(true)
+        getMovies()
+    }
+
     fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
 
         searchMovies(s.toString())
@@ -57,7 +67,7 @@ class MoviesViewModel @Inject constructor(
 
         val allMovies = ArrayList<Movies>()
 
-        copyMoviesList.value?.forEach { it ->
+        searchMoviesList.value?.forEach { it ->
             if (it.title.isNullOrEmpty().not()) {
                 if (it.title.toString().contains(text, true)) {
                     allMovies.add(it)

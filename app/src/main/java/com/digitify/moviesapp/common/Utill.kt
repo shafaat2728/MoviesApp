@@ -7,7 +7,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.DialogFragmentNavigator
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
-import com.digitify.moviesapp.data.dto.Genres
+import com.digitify.moviesapp.domain.models.Genres
 import java.text.SimpleDateFormat
 import java.util.*
 

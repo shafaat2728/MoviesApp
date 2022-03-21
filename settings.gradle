@@ -1,2 +1,6 @@
 rootProject.name = "MoviesApp"
+
 include ':app'
+include ':network'
+include ':domain'
+include ':di'

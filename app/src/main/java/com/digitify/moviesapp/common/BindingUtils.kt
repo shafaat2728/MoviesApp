@@ -2,19 +2,16 @@ package com.digitify.moviesapp.common
 
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
-import android.text.Selection
 import android.text.TextUtils
-import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.digitify.moviesapp.R
-import com.digitify.moviesapp.data.dto.Movies
+import com.digitify.moviesapp.domain.models.Movies
 import com.digitify.moviesapp.presentation.movies.MoviesAdapter
 import com.google.android.material.textfield.TextInputEditText
 
