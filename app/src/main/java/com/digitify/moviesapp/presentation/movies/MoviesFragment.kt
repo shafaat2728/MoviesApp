@@ -55,7 +55,7 @@ class MoviesFragment : Fragment() {
 
         binding.rvMovies.layoutManager = GridLayoutManager(requireContext(), spanCount)
         binding.rvMovies.adapter = adapter
-        adapter.listener = { movies, _ ->
+        adapter.listener = { _,movies, _ ->
             navigateToMovieDetailFragment(movies.id.toString())
         }
     }
